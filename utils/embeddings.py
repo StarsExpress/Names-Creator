@@ -67,10 +67,10 @@ def encode_name(name, timesteps, to_seqs=True):  # Encode input name to sequence
 
 
 if __name__ == '__main__':
-    from utils.decomposition import decompose_names
+    from utils.preprocessing import read_unique_names
     import time
 
-    names_series = decompose_names('forename')
+    names_series = read_unique_names('female_forenames')
 
     start = time.time()
 
@@ -79,7 +79,7 @@ if __name__ == '__main__':
 
     for original_name, encoded_matrix in zip(names_series, matrices):  # Check each encoding validity.
         if original_name != decode_matrix(encoded_matrix):  # Print wrong encoding if found.
-            print('Incorrect encoding for name ' + original_name + '!')
+            print(f'Incorrect encoding for name {original_name}!')
 
     # Make list of encoded matrices/vectors list to a matrices/vectors list.
     seqs_list = sum(names_series.apply(lambda x: encode_name(x, steps)).tolist(), [])
@@ -92,4 +92,4 @@ if __name__ == '__main__':
     assert len(seqs_list) == len(''.join(names_series.tolist())) + len(names_series)
 
     end = time.time()
-    print('\nTotal running time: ' + str(round(end - start, 2)) + ' seconds.')
+    print(f'\nTotal running time: {str(round(end - start, 2))} seconds.')

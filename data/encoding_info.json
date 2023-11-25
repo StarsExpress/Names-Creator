@@ -1,1 +1,1 @@
-{"forename": {"timesteps": 10, "features": 54}, "surname": {"timesteps": 11, "features": 54}}
+{"male_forenames": {"timesteps": 10, "features": 54}, "female_forenames": {"timesteps": 10, "features": 54}, "surnames": {"timesteps": 11, "features": 54}}

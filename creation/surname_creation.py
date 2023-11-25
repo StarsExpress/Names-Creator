@@ -1,6 +1,6 @@
 from configs.app_config import APP_BASE_PATH
 from configs.names_config import AUX_CHARS_DICT, MAX_SURNAME_LEN
-from utils.decomposition import decompose_names
+from utils.preprocessing import read_unique_names
 from utils.embeddings import encode_seqs
 from utils.candidates import select_character, adjust_creation
 import os
@@ -12,10 +12,10 @@ class SurnameCreator:
     """You never know which family you are gonna join."""
 
     def __init__(self):
-        self.names_series = decompose_names('surname')
+        self.names_series = read_unique_names('surnames')
         self.encoding_info_path = os.path.join(APP_BASE_PATH, 'data', 'encoding_info.json')
 
-        model_path = os.path.join(APP_BASE_PATH, 'models', 'surname.h5')
+        model_path = os.path.join(APP_BASE_PATH, 'models', 'surnames.h5')
         self.model = models.load_model(model_path)
         backend.clear_session()
 
@@ -25,7 +25,7 @@ class SurnameCreator:
         lock.acquire()
         try:
             file = open(self.encoding_info_path, 'r')
-            timesteps = json.load(file)['surname']['timesteps']  # Read surname's encoding info.
+            timesteps = json.load(file)['surnames']['timesteps']  # Read surnames' encoding info.
             file.close()
 
         finally:
@@ -63,4 +63,4 @@ if __name__ == '__main__':
     lock_main = threading.Lock()
 
     creator = SurnameCreator()
-    print('Creations:\n', creator.create(5, lock_main))
+    print(f'Creations:\n{creator.create(5, lock_main)}')

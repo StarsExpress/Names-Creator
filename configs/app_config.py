@@ -3,7 +3,9 @@
 import os
 
 # File settings.
-APP_BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Where all files are stored.
+APP_BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Project folder.
+
+DATA_FOLDER_PATH = os.path.join(APP_BASE_PATH, 'data')  # Data folder.
 
 
 # Page settings.
@@ -11,7 +13,7 @@ WEB_NAME = 'Names Creator'
 ICON = ':slot_machine:'
 LAYOUT = 'wide'
 
-COLS_WIDTH_LIST = [4, 1.5, 1.1]  # Columns (creation, preference, and metrics) relative widths.
+COLS_WIDTH_LIST = [3, 1, 1.5, 1.1]  # Columns (creation, preference, and metrics) relative widths.
 PAGE_TITLE = 'Meet new people, shall we?'
 PAGE_HEADER = ':capital_abcd: Logits :fountain: stream and :1234: letters are :sparkler: lit'
 
@@ -21,10 +23,10 @@ SLIDER = ':bulb: Number of Creations'
 MAX_NUMBER = 50
 MIN_NUMBER = 1
 
-LABEL = 'hidden'  # Hide labels for slider and radio.
-
-RADIO = ':grinning: Preference'
+GENDER = ':couple: Gender'
+PREFERENCE = ':grinning: Preference'
 # Radio option emoji can't be shortcodes.
+GENDER_DICT = {'🚺 Female': 'female', '🚹 Male': 'male'}
 PREFERENCE_DICT = {'🆕 Forename Only': 'just_forename', '🌈 Remix Full Name': 'remix',
                    '🆕 Surname Only': 'just_surname', '🆕 Full Name': 'full_name'}
 

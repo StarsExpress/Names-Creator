@@ -1,10 +1,10 @@
 from configs.names_config import LOWER_CASE_LIST, UPPER_CASE_LIST, AUX_CHARS_DICT
-from utils.decomposition import decompose_names
+from utils.preprocessing import read_unique_names
 import numpy as np
 
 
-characters_list = LOWER_CASE_LIST + UPPER_CASE_LIST + list(AUX_CHARS_DICT.values())  # List of all chars.
-surnames_list = decompose_names('surname').tolist()  # Unique surnames list.
+characters_list = LOWER_CASE_LIST + UPPER_CASE_LIST + list(AUX_CHARS_DICT.values())
+surnames_list = read_unique_names('surnames').tolist()
 
 
 def select_character(probs_array):  # Given probability array, randomly select character accordingly.

@@ -5,7 +5,6 @@ import string
 # Names decomposition settings.
 ROMAN_SUFFIX_SET = {'I', 'V', 'X', 'C', 'M'}
 ENGLISH_SUFFIX_SET = {'Jr.', 'Sr.'}
-DF_COLS_LIST = ['forename', 'surname', 'suffix']
 
 
 # Embeddings settings.

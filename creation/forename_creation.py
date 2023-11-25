@@ -1,6 +1,6 @@
 from configs.app_config import APP_BASE_PATH
 from configs.names_config import AUX_CHARS_DICT, MAX_FORENAME_LEN
-from utils.decomposition import decompose_names
+from utils.preprocessing import read_unique_names
 from utils.embeddings import encode_seqs
 from utils.candidates import select_character, adjust_creation
 import os
@@ -11,11 +11,12 @@ from keras import models, backend
 class ForenameCreator:
     """You never know what your parents are gonna "give" you."""
 
-    def __init__(self):
-        self.names_series = decompose_names('forename')
+    def __init__(self, gender):  # Gender options: male, female.
+        self.gender = gender
+        self.names_series = read_unique_names(f'{self.gender}_forenames')
         self.encoding_info_path = os.path.join(APP_BASE_PATH, 'data', 'encoding_info.json')
 
-        model_path = os.path.join(APP_BASE_PATH, 'models', 'forename.h5')
+        model_path = os.path.join(APP_BASE_PATH, 'models', f'{self.gender}_forenames.h5')
         self.model = models.load_model(model_path)
         backend.clear_session()
 
@@ -25,7 +26,7 @@ class ForenameCreator:
         lock.acquire()
         try:
             file = open(self.encoding_info_path, 'r')
-            timesteps = json.load(file)['forename']['timesteps']  # Read forename's encoding info.
+            timesteps = json.load(file)[f'{self.gender}_forenames']['timesteps']  # Read forenames' encoding info.
             file.close()
 
         finally:
@@ -62,5 +63,5 @@ if __name__ == '__main__':
 
     lock_main = threading.Lock()
 
-    creator = ForenameCreator()
-    print('Creations:\n', creator.create(5, lock_main))
+    creator = ForenameCreator('female')
+    print(f'Creations:\n{creator.create(5, lock_main)}')

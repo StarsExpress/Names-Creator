@@ -2,7 +2,7 @@ from configs.app_config import APP_BASE_PATH
 from configs.models_config import EPOCHS, DENOMINATOR
 from configs.names_config import AUX_CHARS_DICT, MAX_SURNAME_LEN
 from neural_nets.stacked_lstm import make_stacked_lstm
-from utils.decomposition import decompose_names
+from utils.preprocessing import read_unique_names
 from utils.embeddings import concat_arrays, encode_seqs, encode_name
 from utils.candidates import select_character, adjust_creation
 import os
@@ -15,9 +15,9 @@ class SurnameTrainer:
     """Train and evaluate Keras model on surnames."""
 
     def __init__(self):
-        self.names_series = decompose_names('surname')
+        self.names_series = read_unique_names('surnames')
         self.encoding_info_path = os.path.join(APP_BASE_PATH, 'data', 'encoding_info.json')
-        self.model_path = os.path.join(APP_BASE_PATH, 'models', 'surname.h5')
+        self.model_path = os.path.join(APP_BASE_PATH, 'models', 'surnames.h5')
         self.metrics_list = [metrics.CategoricalAccuracy(name='categorical_accuracy')]
 
     def train(self):
@@ -34,7 +34,7 @@ class SurnameTrainer:
         encoding_info_dict = json.load(file)  # Read encoding info to make updates.
         file.close()
 
-        encoding_info_dict.update({'surname': {'timesteps': seqs_matrix.shape[1], 'features': seqs_matrix.shape[-1]}})
+        encoding_info_dict.update({'surnames': {'timesteps': seqs_matrix.shape[1], 'features': seqs_matrix.shape[-1]}})
 
         file = open(self.encoding_info_path, 'w')
         json.dump(encoding_info_dict, file)  # Save updated encoding info.
@@ -60,7 +60,7 @@ class SurnameTrainer:
         backend.clear_session()
 
         file = open(self.encoding_info_path, 'r')
-        timesteps = json.load(file)['surname']['timesteps']  # Read surname's encoding info.
+        timesteps = json.load(file)['surnames']['timesteps']  # Read surnames' encoding info.
         file.close()
 
         creations_list, existing_list = [], self.names_series.tolist()  # List of new creations and existing names.
@@ -94,8 +94,8 @@ if __name__ == '__main__':
 
     start = time.time()
     trainer = SurnameTrainer()
-    # trainer.train()
-    print('Evaluations:\n' + trainer.evaluate(5))
+    trainer.train()
+    print(f'Evaluations:\n{trainer.evaluate(5)}')
 
     end = time.time()
-    print('\nTotal running time: ' + str(round(end - start, 2)) + ' seconds.')
+    print(f'\nTotal running time: {str(round(end - start, 2))} seconds.')
