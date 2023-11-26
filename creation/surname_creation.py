@@ -19,17 +19,12 @@ class SurnameCreator:
         self.model = models.load_model(model_path)
         backend.clear_session()
 
-    def create(self, number, lock):  # Number of names to be created.
+    def create(self, number):  # Number of names to be created.
         start_char, end_char = AUX_CHARS_DICT['start'], AUX_CHARS_DICT['end']  # Chars to be added at start and end.
 
-        lock.acquire()
-        try:
-            file = open(self.encoding_info_path, 'r')
-            timesteps = json.load(file)['surnames']['timesteps']  # Read surnames' encoding info.
-            file.close()
-
-        finally:
-            lock.release()
+        file = open(self.encoding_info_path, 'r')
+        timesteps = json.load(file)['surnames']['timesteps']  # Read surnames' encoding info.
+        file.close()
 
         creations_list, existing_list = [], self.names_series.tolist()  # List of new creations and existing names.
 
@@ -58,9 +53,5 @@ class SurnameCreator:
 
 
 if __name__ == '__main__':
-    import threading
-
-    lock_main = threading.Lock()
-
     creator = SurnameCreator()
-    print(f'Creations:\n{creator.create(5, lock_main)}')
+    print(f'Creations:\n{creator.create(5)}')

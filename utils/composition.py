@@ -8,7 +8,7 @@ surname_creator = SurnameCreator()
 forename_creators_dict = {'male': ForenameCreator('male'), 'female': ForenameCreator('female')}
 
 
-def make_creations(number, lock, gender='female', preference='remix'):  # Create names upon called by Streamlit app.
+def make_creations(number, gender='female', preference='remix'):  # Create names upon called by Streamlit app.
     start = time.time()  # Start time of creation.
     surnames_list, forenames_list = [], []
 
@@ -17,10 +17,10 @@ def make_creations(number, lock, gender='female', preference='remix'):  # Create
             surnames_list = select_surnames(number)
 
         else:  # If preference is just surname or full name, create surnames.
-            surnames_list = surname_creator.create(number, lock)
+            surnames_list = surname_creator.create(number)
 
     if preference != 'just_surname':  # If not just surname, forenames must be needed.
-        forenames_list = forename_creators_dict[gender].create(number, lock)
+        forenames_list = forename_creators_dict[gender].create(number)
 
     if preference in ['remix', 'full_name']:  # Concat each pair into full name by empty space.
         creations_list = [forename + ' ' + surname for forename, surname in zip(forenames_list, surnames_list)]
