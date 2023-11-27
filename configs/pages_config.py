@@ -47,6 +47,6 @@ MEDIA = 'Social Media'
 MEDIA_DICT = {'instagram': {'icon': '🔮 Instagram',
                             'link': "https://www.instagram.com/blackjack625/"},
               'linkedin': {'icon': '🖇️ LinkedIn',
-                           'link': "https://www.linkedin.com/in/遠姚jack/"},
+                           'link': "https://www.linkedin.com/in/Yuan-Jack-Yao/"},
               'github': {'icon': '🐈‍⬛ Github',
                          'link': "https://github.com/StarsExpress"}}
