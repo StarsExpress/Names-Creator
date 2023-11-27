@@ -1,4 +1,5 @@
-from configs.app_config import WEB_NAME, ICON, LAYOUT, PAGES_DICT, MENU_ICON
+from configs.app_config import WEB_NAME, ICON, LAYOUT
+from configs.pages_config import PAGES_DICT, MENU_ICON
 from utils.preprocessing import prepare_image_body
 from web_pages.creation_page import enter_creation_page
 from web_pages.intro_page import enter_intro_page

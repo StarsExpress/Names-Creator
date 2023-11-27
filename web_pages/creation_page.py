@@ -1,20 +1,20 @@
-from configs.app_config import CREATION_COLS_WIDTH_LIST, CREATION_TITLE, CREATION_HEADER, SLIDER, MIN_NUMBER, MAX_NUMBER
-from configs.app_config import GENDER, PREFERENCE, GENDER_DICT, PREFERENCE_DICT, EXPANDER, DETAILS
-from configs.app_config import BUTTON, SPINNER, CHAT_NAME, CHAT_AVATAR, METRIC, METRIC_DICT
+from configs.pages_config import CREATION_WIDTH_LIST, CREATION_TITLE, CREATION_HEADER, SLIDER, MIN_NUMBER, MAX_NUMBER
+from configs.pages_config import GENDER, PREFERENCE, GENDER_DICT, PREFERENCE_DICT, EXPANDER, DETAILS
+from configs.pages_config import BUTTON, SPINNER, CHAT_NAME, CHAT_AVATAR, METRIC, METRIC_DICT
 from utils.composition import make_creations
 import streamlit as st
 
 
 def enter_creation_page():
     container = st.container()
-    creations_col, gender_col, preference_col, metrics_col = st.columns(CREATION_COLS_WIDTH_LIST)
+    creations_col, gender_col, preference_col, metrics_col = st.columns(CREATION_WIDTH_LIST)
 
     container.title(CREATION_TITLE)
     container.header(CREATION_HEADER)
 
-    creations_col.subheader(SLIDER)  # Number of creations.
-    number = creations_col.slider('Number of Names', min_value=MIN_NUMBER, max_value=MAX_NUMBER,
-                                  label_visibility='hidden')
+    creations_col.subheader(SLIDER)
+    names_number = creations_col.slider('Number of Names', min_value=MIN_NUMBER, max_value=MAX_NUMBER,
+                                        label_visibility='hidden')
     gender_col.subheader(GENDER)
     gender = gender_col.radio('Gender', GENDER_DICT.keys(), label_visibility='hidden')
 
@@ -30,7 +30,7 @@ def enter_creation_page():
     if preference_col.button(BUTTON):
         with creations_col:  # Write spinner and created names inside creations column.
             with st.spinner(SPINNER):
-                names_list, total_runtime, avg_runtime = make_creations(number, GENDER_DICT[gender],
+                names_list, total_runtime, avg_runtime = make_creations(names_number, GENDER_DICT[gender],
                                                                         PREFERENCE_DICT[preference])
 
             with st.chat_message(CHAT_NAME, avatar=CHAT_AVATAR):
