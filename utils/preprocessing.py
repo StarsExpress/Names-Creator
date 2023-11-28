@@ -34,5 +34,13 @@ def prepare_image_body():
     return page_image
 
 
+def encode_names_list_to_csv(gender, input_list):
+    return pd.DataFrame(input_list, columns=[f'{gender.capitalize()} Names']).to_csv(index=False).encode('utf-8')
+
+
+def turn_names_list_to_txt(gender, input_list):
+    return '\n'.join([f'{gender.capitalize()} Names'] + input_list)
+
+
 if __name__ == '__main__':
     print(read_unique_names('male_forenames'))

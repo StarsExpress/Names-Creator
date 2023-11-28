@@ -2,10 +2,6 @@
 
 import string
 
-# Names decomposition settings.
-ROMAN_SUFFIX_SET = {'I', 'V', 'X', 'C', 'M'}
-ENGLISH_SUFFIX_SET = {'Jr.', 'Sr.'}
-
 
 # Embeddings settings.
 LOWER_CASE_LIST = list(string.ascii_lowercase)

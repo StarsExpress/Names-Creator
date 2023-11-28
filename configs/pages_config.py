@@ -13,8 +13,8 @@ CREATION_HEADER = '🔠 Logits ⛲ stream and 🔢 letters are 🎇 lit'
 
 # Slider, radio and expander.
 SLIDER = '💡 Number of Creations'
-MAX_NUMBER = 50
-MIN_NUMBER = 1
+MAX_NUM = 50
+MIN_NUM = 1
 
 GENDER = '👫 Gender'
 PREFERENCE = '😀 Preference'
