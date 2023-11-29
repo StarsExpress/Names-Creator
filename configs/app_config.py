@@ -12,6 +12,7 @@ DATA_FOLDER_PATH = os.path.join(APP_BASE_PATH, 'data')  # Data folder.
 WEB_NAME = 'Names Creator'
 ICON = '🎰'
 LAYOUT = 'wide'
+THEME = 'light'
 
 NO_BORDERS_CSS = '''<style>
                         [data-testid="stForm"] {border: 0px}

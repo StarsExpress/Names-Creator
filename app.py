@@ -1,4 +1,4 @@
-from configs.app_config import WEB_NAME, ICON, LAYOUT, HIDE_MENU_CSS
+from configs.app_config import WEB_NAME, ICON, LAYOUT, THEME, HIDE_MENU_CSS
 from configs.pages_config import PAGES_DICT, MENU_ICON
 from utils.preprocessing import prepare_image_body
 from web_pages.creation_page import enter_creation_page
@@ -11,7 +11,7 @@ class App:
     """Meet creations."""
 
     def __init__(self):
-        st.set_page_config(page_title=WEB_NAME, page_icon=ICON, layout=LAYOUT)
+        st.set_page_config(page_title=WEB_NAME, page_icon=ICON, layout=LAYOUT, theme=THEME)
 
         background_image_body = prepare_image_body()
         st.markdown(background_image_body, unsafe_allow_html=True)
