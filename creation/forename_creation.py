@@ -20,7 +20,7 @@ class ForenameCreator:
         self.model = models.load_model(model_path)
         backend.clear_session()
 
-    def create(self, number):  # Number of names to be created.
+    def create(self, number_of_names, top_k_elements=None):
         start_char, end_char = AUX_CHARS_DICT['start'], AUX_CHARS_DICT['end']  # Chars to be added at start and end.
 
         file = open(self.encoding_info_path, 'r')
@@ -29,12 +29,12 @@ class ForenameCreator:
 
         creations_list, existing_list = [], self.names_series.tolist()  # List of new creations and existing names.
 
-        while len(creations_list) < number:  # Make creations according to number argument.
+        while len(creations_list) < number_of_names:  # Make creations according to number argument.
             creation_iter = start_char  # Each creation starts from start_char.
             while True:
                 seqs_matrix = encode_seqs(creation_iter, timesteps)  # Encode creation into 3-D sequences matrix.
                 pred_vector = self.model.predict(seqs_matrix, verbose=0)  # Prediction is 2-D vector.
-                char_iter = select_character(pred_vector[0])  # [0] gets 1-D probability array.
+                char_iter = select_character(pred_vector[0], top_k_elements)  # [0] gets 1-D probability array.
                 if char_iter == end_char:  # Iterated creation stops at end_char.
                     break
 
@@ -55,4 +55,4 @@ class ForenameCreator:
 
 if __name__ == '__main__':
     creator = ForenameCreator('female')
-    print(f'Creations:\n{creator.create(5)}')
+    print(f'Creations:\n{creator.create(5, 5)}')

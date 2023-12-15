@@ -13,6 +13,6 @@ AUX_CHARS_DICT = {'start': '~', 'end': '#'}  # Auxiliary characters to help embe
 SEQUENCE_WINDOW = 4
 
 
-# Names creation settings.
+# Creation settings.
 MAX_FORENAME_LEN = 10
 MAX_SURNAME_LEN = 10

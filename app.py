@@ -1,4 +1,4 @@
-from configs.app_config import WEB_NAME, ICON, LAYOUT, LIGHT_THEME_CSS, HIDE_MENU_CSS
+from configs.app_config import WEB_NAME, ICON, LAYOUT, LIGHT_THEME_CSS
 from configs.pages_config import PAGES_DICT, MENU_ICON
 from utils.preprocessing import prepare_image_body
 from web_pages.creation_page import enter_creation_page
@@ -19,7 +19,6 @@ class App:
     @staticmethod
     def execute():
         st.markdown(LIGHT_THEME_CSS, unsafe_allow_html=True)
-        st.markdown(HIDE_MENU_CSS, unsafe_allow_html=True)
 
         options_list = [PAGES_DICT['creation']['name'], PAGES_DICT['intro']['name']]
         icons_list = [PAGES_DICT['creation']['icon'], PAGES_DICT['intro']['icon']]
