@@ -5,14 +5,15 @@ PAGES_DICT = {'creation': {'name': "Let's Create", 'icon': 'magic'},
               'intro': {'name': 'About Me', 'icon': 'arrow-through-heart'}}
 MENU_ICON = 'book'
 
-# Creation page settings.
-SPACE_WIDTH = 0.1  # Provide space between columns.
 
+# Creation page settings.
+CONTAINER_TITLE = 'Meet new people, shall we?'
+CONTAINER_HEADER = '🔠 Logits ⛲ stream and 🔢 letters are 🎇 lit'
+
+SPACE_WIDTH = 0.1  # Provide space between columns.
 # Columns (creation, creativity, gender, preference, and metrics) widths.
 COLUMNS_WIDTH_LIST = [1.8, SPACE_WIDTH, 1.2, SPACE_WIDTH, 1, SPACE_WIDTH, 1.2, SPACE_WIDTH, 0.8]
 
-CREATION_TITLE = 'Meet new people, shall we?'
-CREATION_HEADER = '🔠 Logits ⛲ stream and 🔢 letters are 🎇 lit'
 CREATION_SLIDER = '💡 Amount'
 MAX_NUM = 50
 MIN_NUM = 1

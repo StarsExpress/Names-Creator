@@ -1,6 +1,6 @@
 from configs.app_config import NO_BORDERS_CSS
-from configs.pages_config import COLUMNS_WIDTH_LIST, CREATION_TITLE, CREATION_HEADER, CREATION_SLIDER, MIN_NUM, MAX_NUM
-from configs.pages_config import CREATIVITY_SLIDER, CREATIVITY_DICT
+from configs.pages_config import CONTAINER_TITLE, CONTAINER_HEADER, COLUMNS_WIDTH_LIST
+from configs.pages_config import CREATION_SLIDER, MIN_NUM, MAX_NUM, CREATIVITY_SLIDER, CREATIVITY_DICT
 from configs.pages_config import GENDER, TARGET, GENDER_DICT, TARGET_DICT, TARGET_EXPANDER, TARGET_DETAILS
 from configs.pages_config import BUTTON, SPINNER, CHAT_NAME, CHAT_AVATAR, METRIC, METRIC_DICT
 from utils.composition import make_creations
@@ -12,10 +12,11 @@ def enter_creation_page():
 
     with st.form('names_creation', clear_on_submit=True):
         container = st.container()
-        creations_col, _, creativity_col, _, gender_col, _, target_col, _, metrics_col = st.columns(COLUMNS_WIDTH_LIST)
+        container.title(CONTAINER_TITLE)
+        container.header(CONTAINER_HEADER)
 
-        container.title(CREATION_TITLE)
-        container.header(CREATION_HEADER)
+        # Underscores are for blank columns.
+        creations_col, _, creativity_col, _, gender_col, _, target_col, _, metrics_col = st.columns(COLUMNS_WIDTH_LIST)
 
         creations_col.subheader(CREATION_SLIDER)
         number_of_names = creations_col.slider('Amount', min_value=MIN_NUM, max_value=MAX_NUM,
