@@ -1,4 +1,4 @@
-"""All page configurations."""
+"""All pages configurations."""
 
 # Menu settings.
 PAGES_DICT = {'creation': {'name': "Let's Create", 'icon': 'magic'},
@@ -15,7 +15,7 @@ SPACE_WIDTH = 0.1  # Provide space between columns.
 COLUMNS_WIDTH_LIST = [1.8, SPACE_WIDTH, 1.2, SPACE_WIDTH, 1, SPACE_WIDTH, 1.2, SPACE_WIDTH, 0.8]
 
 CREATION_SLIDER = '💡 Amount'
-MAX_NUM = 50
+MAX_NUM = 30
 MIN_NUM = 1
 
 CREATIVITY_SLIDER = '🎨 Creativity'
