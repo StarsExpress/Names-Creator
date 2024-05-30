@@ -1,5 +1,5 @@
 # Names Creator: logits stream and letters are lit
-Create up to 50 new names from pre-trained Keras neural nets at once~
+Create up to 30 new names from pre-trained Keras neural nets at once~
 
 ## Choices of created names
 This app offers 4 creations 🔢
