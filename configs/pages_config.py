@@ -1,58 +1,89 @@
 """All pages configurations."""
 
 # Menu settings.
-PAGES_DICT = {'creation': {'name': "Let's Create", 'icon': 'magic'},
-              'intro': {'name': 'About Me', 'icon': 'arrow-through-heart'}}
-MENU_ICON = 'book'
+PAGES_DICT = {
+    "creation": {"name": "Let's Create", "icon": "magic"},
+    "intro": {"name": "About Me", "icon": "arrow-through-heart"},
+}
+MENU_ICON = "book"
 
 
 # Creation page settings.
-CONTAINER_TITLE = 'Meet new people, shall we?'
-CONTAINER_HEADER = '🔠 Logits ⛲ stream and 🔢 letters are 🎇 lit'
+CONTAINER_TITLE = "Meet new people, shall we?"
+CONTAINER_HEADER = "🔠 Logits ⛲ stream and 🔢 letters are 🎇 lit"
 
 SPACE_WIDTH = 0.1  # Provide space between columns.
 # Columns (creation, creativity, gender, preference, and metrics) widths.
-COLUMNS_WIDTH_LIST = [1.8, SPACE_WIDTH, 1.2, SPACE_WIDTH, 1, SPACE_WIDTH, 1.2, SPACE_WIDTH, 0.8]
+COLUMNS_WIDTH_LIST = [
+    1.8,
+    SPACE_WIDTH,
+    1.2,
+    SPACE_WIDTH,
+    1,
+    SPACE_WIDTH,
+    1.2,
+    SPACE_WIDTH,
+    0.8,
+]
 
-CREATION_SLIDER = '💡 Amount'
+CREATION_SLIDER = "💡 Amount"
 MAX_NUM = 30
 MIN_NUM = 1
 
-CREATIVITY_SLIDER = '🎨 Creativity'
-CREATIVITY_DICT = {'Slight': 5, 'Medium': 10, 'Fancy': 15, 'Wild': 20, 'Limitless': None}
+CREATIVITY_SLIDER = "🎨 Creativity"
+CREATIVITY_DICT = {
+    "Slight": 5,
+    "Medium": 10,
+    "Fancy": 15,
+    "Wild": 20,
+    "Limitless": None,
+}
 
-GENDER = '👫 Gender'
-GENDER_DICT = {'🚺 Female': 'female', '🚹 Male': 'male'}
+GENDER = "👫 Gender"
+GENDER_DICT = {"🚺 Female": "female", "🚹 Male": "male"}
 
-TARGET = '😀 Target'
-TARGET_DICT = {'🆕 Forename Only': 'just_forename', '🌈 Remix Full Name': 'remix',
-               '🆕 Surname Only': 'just_surname', '🆕 Full Name': 'full_name'}
+TARGET = "😀 Target"
+TARGET_DICT = {
+    "🆕 Forename Only": "just_forename",
+    "🌈 Remix Full Name": "remix",
+    "🆕 Surname Only": "just_surname",
+    "🆕 Full Name": "full_name",
+}
 
 TARGET_EXPANDER = "📌 What's remix?"  # Explain preference definitions.
-TARGET_DETAILS = 'New forename combined with existing surname.'
+TARGET_DETAILS = "New forename combined with existing surname."
 
 # Button, spinner and metric.
-BUTTON = '🧪 Create'
-SPINNER = '🏎️ On our ways, dear 🏎️'
-CHAT_NAME = 'Here you go'
-CHAT_AVATAR = '🎙'
+BUTTON = "🧪 Create"
+SPINNER = "🏎️ On our ways, dear 🏎️"
+CHAT_NAME = "Here you go"
+CHAT_AVATAR = "🎙"
 
-METRIC = '⏲️ Time'
-METRIC_DICT = {'total': 'Total', 'avg': 'Average per name'}
+METRIC = "⏲️ Time"
+METRIC_DICT = {"total": "Total", "avg": "Average per name"}
 
 
 # Intro page settings.
-INTRO_WIDTH_LIST = [2.5, 4, 2]  # Columns (web intro, self intro, media) relative widths.
-INTRO_TITLE = 'Feel Fun'
+INTRO_WIDTH_LIST = [
+    2.5,
+    4,
+    2,
+]  # Columns (web intro, self intro, media) relative widths.
+INTRO_TITLE = "Feel Fun"
 
 WEB_INTRO = "Why Names Creation"
 
 SELF_INTRO = "About Author"
 
-MEDIA = 'Social Media'
-MEDIA_DICT = {'instagram': {'icon': '🔮 Instagram',
-                            'link': "https://www.instagram.com/blackjack625/"},
-              'linkedin': {'icon': '🖇️ LinkedIn',
-                           'link': "https://www.linkedin.com/in/Yuan-Jack-Yao/"},
-              'github': {'icon': '🐈‍⬛ Github',
-                         'link': "https://github.com/StarsExpress"}}
+MEDIA = "Social Media"
+MEDIA_DICT = {
+    "instagram": {
+        "icon": "🔮 Instagram",
+        "link": "https://www.instagram.com/blackjack625/",
+    },
+    "linkedin": {
+        "icon": "🖇️ LinkedIn",
+        "link": "https://www.linkedin.com/in/Yuan-Jack-Yao/",
+    },
+    "github": {"icon": "🐈‍⬛ Github", "link": "https://github.com/StarsExpress"},
+}
