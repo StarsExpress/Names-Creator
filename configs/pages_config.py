@@ -12,8 +12,8 @@ MENU_ICON = "book"
 CONTAINER_TITLE = "Meet new people, shall we?"
 CONTAINER_HEADER = "🔠 Logits ⛲ stream and 🔢 letters are 🎇 lit"
 
-SPACE_WIDTH = 0.1  # Provide space between columns.
-# Columns (creation, creativity, gender, preference, and metrics) widths.
+SPACE_WIDTH = 0.1  # Space between columns.
+# Columns: creation, creativity, gender, preference, metrics.
 COLUMNS_WIDTH_LIST = [
     1.8,
     SPACE_WIDTH,
@@ -64,15 +64,10 @@ METRIC_DICT = {"total": "Total", "avg": "Average per name"}
 
 
 # Intro page settings.
-INTRO_WIDTH_LIST = [
-    2.5,
-    4,
-    2,
-]  # Columns (web intro, self intro, media) relative widths.
+INTRO_WIDTH_LIST = [2.5, 4, 2]  # Relative widths (web intro, self intro, media).
 INTRO_TITLE = "Feel Fun"
 
 WEB_INTRO = "Why Names Creation"
-
 SELF_INTRO = "About Author"
 
 MEDIA = "Social Media"
@@ -85,5 +80,8 @@ MEDIA_DICT = {
         "icon": "🖇️ LinkedIn",
         "link": "https://www.linkedin.com/in/Yuan-Jack-Yao/",
     },
-    "github": {"icon": "🐈‍⬛ Github", "link": "https://github.com/StarsExpress"},
+    "github": {
+        "icon": "🐈‍⬛ Github",
+        "link": "https://github.com/StarsExpress"
+    },
 }

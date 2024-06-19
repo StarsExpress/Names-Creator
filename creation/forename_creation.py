@@ -11,7 +11,7 @@ from keras import models, backend
 class ForenameCreator:
     """You never know what your parents are gonna "give" you."""
 
-    def __init__(self, gender):  # Gender options: male, female.
+    def __init__(self, gender: str):  # Gender options: male, female.
         self.gender = gender
         self.names_series = read_unique_names(f'{self.gender}_forenames')
         self.encoding_info_path = os.path.join(APP_BASE_PATH, 'data', 'encoding_info.json')

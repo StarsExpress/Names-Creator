@@ -5,30 +5,38 @@ import time
 
 
 surname_creator = SurnameCreator()
-forename_creators_dict = {'male': ForenameCreator('male'), 'female': ForenameCreator('female')}
+forename_creators_dict = {
+    'male': ForenameCreator('male'),
+    'female': ForenameCreator('female')
+}
 
 
 # Create names upon called by Streamlit app.
-def make_creations(number_of_names, creativity=None, gender='female', target='remix'):
-    start = time.time()  # Start time of creation.
-    surnames_list, forenames_list = [], []
+def make_creations(
+        names_num: int,
+        creativity: int = None,
+        gender: str = 'female',
+        target: str = 'remix'
+):
+    start = time.time()
+    surnames, forenames = [], []
 
     if target != 'just_forename':  # If not just forename, surnames must be needed.
-        if target == 'remix':  # If target is remix, select from existing surnames.
-            surnames_list = select_surnames(number_of_names)
+        if target == 'remix':  # Select from existing surnames.
+            surnames = select_surnames(names_num)
 
         else:  # If target is just surname or full name, create surnames.
-            surnames_list = surname_creator.create(number_of_names, creativity)
+            surnames = surname_creator.create(names_num, creativity)
 
     if target != 'just_surname':  # If not just surname, forenames must be needed.
-        forenames_list = forename_creators_dict[gender].create(number_of_names, creativity)
+        forenames = forename_creators_dict[gender].create(names_num, creativity)
 
     if target in ['remix', 'full_name']:  # Concat each pair into full name by empty space.
-        creations_list = [forename + ' ' + surname for forename, surname in zip(forenames_list, surnames_list)]
+        creations = [forename + ' ' + surname for forename, surname in zip(forenames, surnames)]
 
     else:  # One of two lists must be empty if target is just surname or forename.
-        creations_list = surnames_list + forenames_list
+        creations = surnames + forenames
 
-    end = time.time()  # End time of creation.
-    total_time, avg_time = round(end - start, 2), round((end - start) / number_of_names, 2)
-    return creations_list, total_time, avg_time
+    end = time.time()
+    total_time, avg_time = round(end - start, 2), round((end - start) / names_num, 2)
+    return creations, total_time, avg_time

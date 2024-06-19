@@ -20,14 +20,19 @@ class App:
     def execute():
         st.markdown(LIGHT_THEME_CSS, unsafe_allow_html=True)
 
-        options_list = [PAGES_DICT['creation']['name'], PAGES_DICT['intro']['name']]
-        icons_list = [PAGES_DICT['creation']['icon'], PAGES_DICT['intro']['icon']]
+        options_list = [PAGES_DICT["creation"]["name"], PAGES_DICT["intro"]["name"]]
+        icons_list = [PAGES_DICT["creation"]["icon"], PAGES_DICT["intro"]["icon"]]
 
         with st.sidebar:
-            selected_page = option_menu('Menu', options_list, menu_icon=MENU_ICON, icons=icons_list,
-                                        styles="icon")
+            selected_page = option_menu(
+                "Menu",
+                options_list,
+                menu_icon=MENU_ICON,
+                icons=icons_list,
+                styles="icon",
+            )
 
-        if selected_page == PAGES_DICT['creation']['name']:
+        if selected_page == PAGES_DICT["creation"]["name"]:
             enter_creation_page()
-        if selected_page == PAGES_DICT['intro']['name']:
+        if selected_page == PAGES_DICT["intro"]["name"]:
             enter_intro_page()
