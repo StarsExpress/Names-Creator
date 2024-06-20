@@ -1,4 +1,4 @@
-from configs.models_config import PAD_VALUE, NEURONS_UNITS, ACTIVATIONS, DROPOUT_RATE, LOSS_FUNCTION, LEARNING_RATE
+from configs.models_config import PAD_VALUE, LSTM_NEURONS, ACTIVATIONS, DROPOUT_RATE, LOSS_FUNCTION, LEARNING_RATE
 from keras import metrics, Sequential, optimizers
 from keras.layers import Masking, LSTM, Dense
 
@@ -14,7 +14,7 @@ def make_stacked_lstm(
     # 1st LSTM layer: specify input shape & return sequences.
     model.add(
         LSTM(
-            NEURONS_UNITS[0],
+            LSTM_NEURONS[0],
             activation=ACTIVATIONS[0],
             input_shape=input_shape,
             return_sequences=True,
@@ -26,7 +26,7 @@ def make_stacked_lstm(
     model.add(Masking(mask_value=PAD_VALUE))  # 2nd masking layer.
     model.add(  # 2nd LSTM layer.
         LSTM(
-            NEURONS_UNITS[1],
+            LSTM_NEURONS[1],
             activation=ACTIVATIONS[1],
             dropout=DROPOUT_RATE,
             recurrent_dropout=DROPOUT_RATE,

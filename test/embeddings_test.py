@@ -5,7 +5,7 @@ from utils.preprocessing import read_unique_names
 def test_embeddings(names_type: str):
     names_series = read_unique_names(names_type)
 
-    # Timesteps is max name length plus 1, indicating start_char.
+    # Plus 1 indicates start_char.
     steps = max(names_series.apply(lambda x: len(x))) + 1
     matrices = names_series.apply(lambda x: encode_seqs(x, steps))
 
@@ -17,10 +17,10 @@ def test_embeddings(names_type: str):
     seqs_list = sum(names_series.apply(lambda x: encode_name(x, steps)).tolist(), [])
     chars_list = sum(names_series.apply(lambda x: encode_name(x, steps, False)).tolist(), [])
 
-    for seqs, chars in zip(seqs_list, chars_list):  # Match of shapes of each encoded seqs and chars.
+    for seqs, chars in zip(seqs_list, chars_list):  # Check shapes of encoded seqs and chars.
         assert seqs.shape == (1, steps, len(characters_list)), chars.shape == (1, len(characters_list))
 
-    # len(seqs_list) = length of all names + total names count; an n-length name gets n + 1 sequences.
+    # len(seqs_list) = length of all names + total names count; n-length name gets n + 1 seqs.
     assert len(seqs_list) == len(''.join(names_series.tolist())) + len(names_series)
 
 
@@ -28,10 +28,8 @@ if __name__ == '__main__':
     import time
 
     start = time.time()
-
     test_embeddings('surnames')
     test_embeddings('male_forenames')
     test_embeddings('female_forenames')
-
     end = time.time()
     print(f'\nTotal runtime: {str(round(end - start, 2))} seconds.')

@@ -9,7 +9,17 @@ from keras import models, backend
 
 
 class ForenameCreator:
-    """You never know what your parents are gonna "give" you."""
+    """
+    Create specific gender's new forenames via pre-trained Keras model.
+
+    Attributes:
+    gender (str): gender for which model is being used. Options: 'male', 'female'.
+    encoding_info_path (str): path to encoding information file.
+    model_path (str): path to forename's model file of specific gender.
+
+    Methods:
+    create(names_num: int, top_k_elements: int = None): create a number of new forenames.
+    """
 
     def __init__(self, gender: str):  # Gender options: male, female.
         self.gender = gender
@@ -20,16 +30,17 @@ class ForenameCreator:
         self.model = models.load_model(model_path)
         backend.clear_session()
 
-    def create(self, number_of_names, top_k_elements=None):
-        start_char, end_char = AUX_CHARS_DICT['start'], AUX_CHARS_DICT['end']  # Chars to be added at start and end.
+    def create(self, names_num: int, top_k_elements: int = None):
+        # Chars to be added at start and end.
+        start_char, end_char = AUX_CHARS_DICT['start'], AUX_CHARS_DICT['end']
 
         file = open(self.encoding_info_path, 'r')
-        timesteps = json.load(file)[f'{self.gender}_forenames']['timesteps']  # Read forenames' encoding info.
+        timesteps = json.load(file)[f'{self.gender}_forenames']['timesteps']
         file.close()
 
-        creations_list, existing_list = [], self.names_series.tolist()  # List of new creations and existing names.
+        creations, existing_names = [], self.names_series.tolist()
 
-        while len(creations_list) < number_of_names:  # Make creations according to number argument.
+        while len(creations) < names_num:
             creation_iter = start_char  # Each creation starts from start_char.
             while True:
                 seqs_matrix = encode_seqs(creation_iter, timesteps)  # Encode creation into 3-D sequences matrix.
@@ -42,15 +53,16 @@ class ForenameCreator:
                     continue
 
                 creation_iter += char_iter  # Append selection to creation.
-                if len(creation_iter) == MAX_FORENAME_LEN:  # Control iterated creation length.
+                if len(creation_iter) == MAX_FORENAME_LEN:  # Control length.
                     break
 
             creation_iter = adjust_creation(creation_iter)
             if len(creation_iter.strip()) > 0:  # Ensure creation isn't empty.
-                if creation_iter not in existing_list + creations_list:  # Ensure creation isn't already existing.
-                    creations_list.append(creation_iter)
+                # Ensure creation isn't already existing.
+                if creation_iter not in existing_names + creations:
+                    creations.append(creation_iter)
 
-        return creations_list
+        return creations
 
 
 if __name__ == '__main__':

@@ -9,7 +9,7 @@ surnames_list = read_unique_names('surnames').tolist()
 
 def select_character(
         probs_array: np.ndarray,
-        top_k_elements: int = None
+        top_k_elements: int = None,
 ):
     if top_k_elements is None:  # None means no top-k method.
         return np.random.choice(characters_list, size=1, p=probs_array)[0]  # [0] gets item from returned list.

@@ -53,7 +53,6 @@ TARGET_DICT = {
 TARGET_EXPANDER = "📌 What's remix?"  # Explain preference definitions.
 TARGET_DETAILS = "New forename combined with existing surname."
 
-# Button, spinner and metric.
 BUTTON = "🧪 Create"
 SPINNER = "🏎️ On our ways, dear 🏎️"
 CHAT_NAME = "Here you go"

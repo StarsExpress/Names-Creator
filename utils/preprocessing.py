@@ -4,9 +4,7 @@ import pandas as pd
 import base64
 
 
-def read_unique_names(
-        name_type: str
-):  # Possible choices: male_forenames, female_forenames, surnames.
+def read_unique_names(name_type: str):  # Options: male_forenames, female_forenames, surnames.
     names_file_path = os.path.join(DATA_FOLDER_PATH, name_type)
     names_df = pd.read_csv(names_file_path, sep='\t', header=None, names=['names'])
 
@@ -38,7 +36,7 @@ def prepare_image_body():
 
 def encode_names_list_to_csv(
         gender: str,
-        names_list: list[str]
+        names_list: list[str],
 ):
     names_df = pd.DataFrame(names_list, columns=[f'{gender.capitalize()} Names'])
     return names_df.to_csv(index=False).encode('utf-8')
@@ -46,10 +44,6 @@ def encode_names_list_to_csv(
 
 def turn_names_list_to_txt(
         gender: str,
-        names_list: list[str]
+        names_list: list[str],
 ):
     return '\n'.join([f'{gender.capitalize()} Names'] + names_list)
-
-
-if __name__ == '__main__':
-    print(read_unique_names('male_forenames'))

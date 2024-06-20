@@ -8,7 +8,14 @@ from streamlit_option_menu import option_menu
 
 
 class App:
-    """Meet creations."""
+    """
+    Set up and execute web application.
+
+    Methods:
+    __init__(): set up the page configuration and prepare background image.
+
+    execute(): execute web application, including theme and menu options.
+    """
 
     def __init__(self):
         st.set_page_config(page_title=WEB_NAME, page_icon=ICON, layout=LAYOUT)
@@ -20,15 +27,15 @@ class App:
     def execute():
         st.markdown(LIGHT_THEME_CSS, unsafe_allow_html=True)
 
-        options_list = [PAGES_DICT["creation"]["name"], PAGES_DICT["intro"]["name"]]
-        icons_list = [PAGES_DICT["creation"]["icon"], PAGES_DICT["intro"]["icon"]]
+        options = [PAGES_DICT["creation"]["name"], PAGES_DICT["intro"]["name"]]
+        icons = [PAGES_DICT["creation"]["icon"], PAGES_DICT["intro"]["icon"]]
 
         with st.sidebar:
             selected_page = option_menu(
                 "Menu",
-                options_list,
+                options,
                 menu_icon=MENU_ICON,
-                icons=icons_list,
+                icons=icons,
                 styles="icon",
             )
 

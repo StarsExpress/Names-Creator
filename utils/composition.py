@@ -7,7 +7,7 @@ import time
 surname_creator = SurnameCreator()
 forename_creators_dict = {
     'male': ForenameCreator('male'),
-    'female': ForenameCreator('female')
+    'female': ForenameCreator('female'),
 }
 
 
@@ -16,7 +16,7 @@ def make_creations(
         names_num: int,
         creativity: int = None,
         gender: str = 'female',
-        target: str = 'remix'
+        target: str = 'remix',
 ):
     start = time.time()
     surnames, forenames = [], []
