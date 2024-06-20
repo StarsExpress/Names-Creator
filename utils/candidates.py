@@ -21,15 +21,11 @@ def select_character(
     return np.random.choice(top_k_characters, size=1, p=top_k_probs)[0]
 
 
-def select_surnames(
-        size: int
-):  # With uniform probability.
+def select_surnames(size: int):  # With uniform probability.
     return np.random.choice(surnames_list, size=size)  # Return entire list for remix preference.
 
 
-def adjust_creation(
-        created_name: str
-):
+def adjust_creation(created_name: str):
     # Replace start_char with empty space. Ensure creation is capitalized.
     created_name = created_name.replace(AUX_CHARS_DICT['start'], '').capitalize()
     if created_name[:2] == 'Mc':  # If created name starts with Mc, capitalize 3rd letter.
