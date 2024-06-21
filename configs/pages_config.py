@@ -77,7 +77,7 @@ MEDIA_DICT = {
     },
     "linkedin": {
         "icon": "🖇️ LinkedIn",
-        "link": "https://www.linkedin.com/in/Yuan-Jack-Yao/",
+        "link": "https://www.linkedin.com/in/yuan-jack-yao/",
     },
     "github": {
         "icon": "🐈‍⬛ Github",

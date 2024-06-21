@@ -3,10 +3,19 @@ from keras import metrics, Sequential, optimizers
 from keras.layers import Masking, LSTM, Dense
 
 
-def make_stacked_lstm(
-        input_shape: tuple[int, int],  # (timesteps, features).
-        lstm_metrics: list[metrics],
-):
+def make_stacked_lstm(input_shape: tuple[int, ...], lstm_metrics: list[metrics]):
+    """
+    Create a stacked LSTM model with 2 masking layers and 2 LSTM layers.
+    Output layer has the same number of neurons as number of features.
+    Model is compiled with a specified loss function, optimizer, and metrics.
+
+    Args:
+        input_shape (tuple[int, ...]): input data's shape (timesteps, features).
+        lstm_metrics (list[metrics]): metrics to use when compiling model.
+
+    Returns:
+        Sequential: compiled stacked LSTM model.
+    """
     model = Sequential()
 
     # 1st masking layer: specify input shape.
@@ -33,7 +42,6 @@ def make_stacked_lstm(
         )
     )
 
-    # Output layer: shape of features count.
     model.add(Dense(input_shape[-1], activation=ACTIVATIONS[-1]))
     model.compile(
         loss=LOSS_FUNCTION,

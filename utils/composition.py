@@ -6,18 +6,29 @@ import time
 
 surname_creator = SurnameCreator()
 forename_creators_dict = {
-    'male': ForenameCreator('male'),
-    'female': ForenameCreator('female'),
+    'male': ForenameCreator('male'), 'female': ForenameCreator('female'),
 }
 
 
-# Create names upon called by Streamlit app.
 def make_creations(
-        names_num: int,
-        creativity: int = None,
-        gender: str = 'female',
-        target: str = 'remix',
+        names_num: int, creativity: int = None,
+        gender: str = 'female', target: str = 'remix',
 ):
+    """
+    Create a specified number of names based on provided parameters.
+    Also measure total and average time taken to create names.
+
+    Args:
+        names_num (int): number of names to create.
+        creativity (int, optional): creativity level for creation. Defaults to None.
+        gender (str, optional): gender for creation. Defaults to 'female'.
+        target (str, optional): target for creation.
+        Can be 'remix', 'just_surname', 'just_forename', or 'full_name'. Defaults to 'remix'.
+
+    Returns:
+        tuple: contain list of created names, total time and average time to create names.
+    """
+
     start = time.time()
     surnames, forenames = [], []
 

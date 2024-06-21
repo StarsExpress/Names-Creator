@@ -1,8 +1,17 @@
 from utils.embeddings import encode_seqs, decode_matrix, encode_name, characters_list
-from utils.preprocessing import read_unique_names
+from utils.files_helper import read_unique_names
 
 
 def test_embeddings(names_type: str):
+    """
+    Test functionality of embeddings.py in these steps:
+    1. Read unique names of a specified type and encode them into sequences.
+    2. Decode encoded sequences and check if decoded names match original names.
+    3. Also check shapes of encoded sequences and characters.
+
+    Args:
+        names_type (str): type of names to test. Can be 'surnames', 'male_forenames', or 'female_forenames'.
+    """
     names_series = read_unique_names(names_type)
 
     # Plus 1 indicates start_char.

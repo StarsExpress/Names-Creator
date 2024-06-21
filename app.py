@@ -18,6 +18,9 @@ class App:
     """
 
     def __init__(self):
+        """
+        Initialize App class: set up page configuration and prepares background image.
+        """
         st.set_page_config(page_title=WEB_NAME, page_icon=ICON, layout=LAYOUT)
 
         background_image_body = prepare_image_body()
@@ -25,6 +28,10 @@ class App:
 
     @staticmethod
     def execute():
+        """
+        Apply theme and menu options to execute web application.
+        Also determine which page to display based on selected menu option.
+        """
         st.markdown(LIGHT_THEME_CSS, unsafe_allow_html=True)
 
         options = [PAGES_DICT["creation"]["name"], PAGES_DICT["intro"]["name"]]

@@ -4,6 +4,11 @@ import streamlit as st
 
 
 def enter_intro_page():
+    """
+    Set up introduction page of web application.
+    It creates a container and divides it into 3 columns: self_intro_col, web_intro_col, and media_col.
+    Each column is filled with relevant content: self intro, web intro, and media links.
+    """
     container = st.container()
     self_intro_col, web_intro_col, media_col = st.columns(INTRO_WIDTH_LIST)
     container.title(INTRO_TITLE)

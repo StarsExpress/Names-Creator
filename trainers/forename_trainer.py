@@ -2,7 +2,7 @@ from configs.app_config import APP_BASE_PATH
 from configs.models_config import EPOCHS, DENOMINATOR
 from configs.names_config import AUX_CHARS_DICT, MAX_FORENAME_LEN
 from neural_nets.stacked_lstm import make_stacked_lstm
-from utils.preprocessing import read_unique_names
+from utils.files_helper import read_unique_names
 from utils.embeddings import concat_arrays, encode_seqs, encode_name
 from utils.candidates import select_character, adjust_creation
 import os
@@ -28,6 +28,10 @@ class ForenameTrainer:
     """
 
     def __init__(self, gender: str):
+        """
+        Initialize with series of unique forenames of given gender,
+        paths to encoding information and model files, and a list of metrics used during training.
+        """
         self.gender = gender
         self.names_series = read_unique_names(f"{self.gender}_forenames")
         self.encoding_info_path = os.path.join(
@@ -39,6 +43,9 @@ class ForenameTrainer:
         self.metrics_list = [metrics.CategoricalAccuracy(name="categorical_accuracy")]
 
     def train(self):
+        """
+        Train model on forenames.
+        """
         # Timesteps (encoding length) = max name length + 1 (start_char).
         timesteps = max(self.names_series.apply(lambda x: len(x))) + 1
 
@@ -90,6 +97,16 @@ class ForenameTrainer:
         backend.clear_session()
 
     def evaluate(self, names_num: int, top_k_elements: int = None):
+        """
+        Create a number of new forenames for evaluation.
+
+        Args:
+            names_num (int): number of new names to create.
+            top_k_elements (int, optional): number of top characters for selection during creation.
+
+        Returns:
+            str: string of all created names, separated by commas.
+        """
         # Chars to be added at start and end.
         start_char, end_char = AUX_CHARS_DICT["start"], AUX_CHARS_DICT["end"]
 

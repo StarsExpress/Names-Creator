@@ -11,14 +11,30 @@ start_char = AUX_CHARS_DICT['start']  # Char to be added at leftmost edge to rep
 end_char = AUX_CHARS_DICT['end']  # Char to be added at rightmost edge to represent name's end.
 
 
-def concat_arrays(arrays_list: list[np.ndarray]):  # Vertical concat.
+def concat_arrays(arrays_list: list[np.ndarray]):
+    """
+    Concatenate list of arrays vertically.
+
+    Args:
+        arrays_list (list[np.ndarray]): list of arrays to concatenate.
+
+    Returns:
+        np.ndarray: concatenated array.
+    """
     return np.concatenate(arrays_list, axis=0)
 
 
-def encode_seqs(
-        string: str,
-        timesteps: int,
-):  # Encode string to 3-D sequences of shape (1, timesteps, len(characters_list)).
+def encode_seqs(string: str, timesteps: int):
+    """
+    Encode a string into a 3-D sequence of shape (1, timesteps, len(characters_list)).
+
+    Args:
+        string (str): string to encode.
+        timesteps (int): number of timesteps for sequence.
+
+    Returns:
+        np.ndarray: encoded 3-D sequence.
+    """
     seqs_matrix = np.zeros((1, timesteps, len(characters_list)))  # Matrix starts from zeros.
 
     pre_padding_len = timesteps - len(string)  # Number of pre-padding chars at left side.
@@ -32,7 +48,16 @@ def encode_seqs(
     return seqs_matrix
 
 
-def encode_chars(string: str):  # Encode string to 2-D chars of shape (1, len(characters_list)).
+def encode_chars(string: str):
+    """
+    Encode a string into a 2-D array of shape (1, len(characters_list)).
+
+    Args:
+        string (str): string to encode.
+
+    Returns:
+        np.ndarray: encoded 2-D array.
+    """
     chars_vector = np.zeros((1, len(characters_list)))  # Vector starts from zeros.
 
     items_list = list(string)  # List of all items from string.
@@ -41,7 +66,16 @@ def encode_chars(string: str):  # Encode string to 2-D chars of shape (1, len(ch
     return chars_vector
 
 
-def decode_matrix(matrix: np.ndarray):  # Decode 3-D matrix of shape (1, timesteps, len(chars_list)) to string.
+def decode_matrix(matrix: np.ndarray):
+    """
+    Decode a 3-D matrix of shape (1, timesteps, len(chars_list)) into a string.
+
+    Args:
+        matrix (np.ndarray): matrix to decode.
+
+    Returns:
+        str: decoded string.
+    """
     items_list = []  # List of decoded items.
 
     matrix = matrix[0]  # [0] gets the matrix formed by 2nd and 3rd dimensions.
@@ -54,21 +88,27 @@ def decode_matrix(matrix: np.ndarray):  # Decode 3-D matrix of shape (1, timeste
     return string.replace(start_char, '').replace(end_char, '')
 
 
-def encode_name(
-        name: str,
-        timesteps: int,
-        to_seqs: bool = True,
-):  # Encode input name to sequences or chars.
-    # Encoded sequences of 'Hi' are: ~, ~H, ~Hi; encoded chars are: H, i, #.
+def encode_name(name: str, timesteps: int, to_seqs: bool = True):
+    """
+    Encode a name into sequences or characters.
+    For example: encoded sequences of 'Hi' are: ~, ~H, ~Hi; encoded chars are: H, i, #.
 
+    Args:
+        name (str): name to encode.
+        timesteps (int): number of timesteps for sequence.
+        to_seqs (bool, optional): if True, encode to sequences. Otherwise, encode to chars. Defaults to True.
+
+    Returns:
+        list: list of encoded matrices/vectors.
+    """
     name = start_char + name + end_char  # Add start_char at front and end_char at back.
 
-    output_list = []  # List of encoded matrices/vectors.
+    encoded_output = []
     for i in range(1, len(name)):  # Iterate through sliced substring of name.
         if to_seqs:  # If the wanted output is encoded sequences, apply max function to adjust for window.
-            output_list.append(encode_seqs(name[max(i - SEQUENCE_WINDOW, 0):i], timesteps))
+            encoded_output.append(encode_seqs(name[max(i - SEQUENCE_WINDOW, 0):i], timesteps))
 
-        else:  # If the wanted output is encoded chars.
-            output_list.append(encode_chars(name[i]))
+        else:
+            encoded_output.append(encode_chars(name[i]))
 
-    return output_list
+    return encoded_output

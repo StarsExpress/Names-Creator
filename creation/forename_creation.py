@@ -1,6 +1,6 @@
 from configs.app_config import APP_BASE_PATH
 from configs.names_config import AUX_CHARS_DICT, MAX_FORENAME_LEN
-from utils.preprocessing import read_unique_names
+from utils.files_helper import read_unique_names
 from utils.embeddings import encode_seqs
 from utils.candidates import select_character, adjust_creation
 import os
@@ -22,6 +22,10 @@ class ForenameCreator:
     """
 
     def __init__(self, gender: str):  # Gender options: male, female.
+        """
+        Initialize with series of unique forenames of given gender,
+        paths to encoding information and model files.
+        """
         self.gender = gender
         self.names_series = read_unique_names(f'{self.gender}_forenames')
         self.encoding_info_path = os.path.join(APP_BASE_PATH, 'data', 'encoding_info.json')
@@ -31,6 +35,16 @@ class ForenameCreator:
         backend.clear_session()
 
     def create(self, names_num: int, top_k_elements: int = None):
+        """
+        Create a number of new forenames for production.
+
+        Args:
+            names_num (int): number of new names to create.
+            top_k_elements (int, optional): number of top characters for selection during creation.
+
+        Returns:
+            str: string of all created names, separated by commas.
+        """
         # Chars to be added at start and end.
         start_char, end_char = AUX_CHARS_DICT['start'], AUX_CHARS_DICT['end']
 
