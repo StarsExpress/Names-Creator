@@ -29,7 +29,7 @@ def enter_creation_page():
          gender_col, _, target_col, _, metrics_col) = st.columns(COLUMNS_WIDTH_LIST)
 
         creations_col.subheader(CREATION_SLIDER)
-        number_of_names = creations_col.slider(
+        num_names = creations_col.slider(
             "Amount", min_value=MIN_NUM, max_value=MAX_NUM, label_visibility="hidden"
         )
 
@@ -57,11 +57,10 @@ def enter_creation_page():
         total_time, avg_time = 0, 0  # Default is 0.
 
         if target_col.form_submit_button(BUTTON):
-            # Write spinner and created names inside creations column.
-            with creations_col:
+            with creations_col:  # Write spinner and created names inside creations column.
                 with st.spinner(SPINNER):
                     names_list, total_time, avg_time = make_creations(
-                        number_of_names,
+                        num_names,
                         CREATIVITY_DICT[creativity],
                         GENDER_DICT[gender],
                         TARGET_DICT[target],

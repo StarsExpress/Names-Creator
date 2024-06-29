@@ -1,5 +1,4 @@
-from configs.pages_config import INTRO_WIDTH_LIST, INTRO_TITLE, WEB_INTRO
-from configs.pages_config import SELF_INTRO, MEDIA, MEDIA_DICT
+from configs.pages_config import INTRO_WIDTH_LIST, INTRO_TITLE, WEB_INTRO, SELF_INTRO, MEDIA, MEDIA_DICT
 import streamlit as st
 
 

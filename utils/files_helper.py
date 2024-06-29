@@ -1,4 +1,4 @@
-from configs.app_config import DATA_FOLDER_PATH
+from configs.paths_config import DATA_FOLDER_PATH
 import os
 import pandas as pd
 

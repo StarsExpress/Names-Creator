@@ -1,4 +1,4 @@
-from configs.app_config import APP_BASE_PATH
+from configs.paths_config import DATA_FOLDER_PATH, MODELS_FOLDER_PATH
 from configs.models_config import EPOCHS, DENOMINATOR
 from configs.names_config import AUX_CHARS_DICT, MAX_FORENAME_LEN
 from neural_nets.stacked_lstm import make_stacked_lstm
@@ -11,7 +11,7 @@ from keras import metrics, models, backend
 from keras.callbacks import EarlyStopping
 
 
-class ForenameTrainer:
+class ForenamesTrainer:
     """
     Train and evaluate Keras model on specific gender's forenames.
 
@@ -24,7 +24,7 @@ class ForenameTrainer:
 
     Methods:
     train(): train model on forenames.
-    evaluate(names_num: int, top_k_elements: int = None): generate a number of new names.
+    evaluate(num_names: int, top_k_elements: int = None): generate a number of new names.
     """
 
     def __init__(self, gender: str):
@@ -35,10 +35,10 @@ class ForenameTrainer:
         self.gender = gender
         self.names_series = read_unique_names(f"{self.gender}_forenames")
         self.encoding_info_path = os.path.join(
-            APP_BASE_PATH, "data", "encoding_info.json"
+            DATA_FOLDER_PATH, "encoding_info.json"
         )
         self.model_path = os.path.join(
-            APP_BASE_PATH, "models", f"{self.gender}_forenames.h5"
+            MODELS_FOLDER_PATH, f"{self.gender}_forenames.h5"
         )
         self.metrics_list = [metrics.CategoricalAccuracy(name="categorical_accuracy")]
 
@@ -96,12 +96,12 @@ class ForenameTrainer:
         model.save(self.model_path)
         backend.clear_session()
 
-    def evaluate(self, names_num: int, top_k_elements: int = None):
+    def evaluate(self, num_names: int, top_k_elements: int = None):
         """
         Create a number of new forenames for evaluation.
 
         Args:
-            names_num (int): number of new names to create.
+            num_names (int): number of new names to create.
             top_k_elements (int, optional): number of top characters for selection during creation.
 
         Returns:
@@ -119,7 +119,7 @@ class ForenameTrainer:
 
         creations, existing_names = [], self.names_series.tolist()
 
-        while len(creations) < names_num:
+        while len(creations) < num_names:
             creation_iter = start_char  # Each creation starts from start_char.
             while True:
                 seqs_matrix = encode_seqs(
@@ -154,12 +154,6 @@ class ForenameTrainer:
 
 
 if __name__ == "__main__":
-    import time
-
-    start = time.time()
-    trainer = ForenameTrainer("male")
+    trainer = ForenamesTrainer("male")
     # trainer.train()
     print(f"Evaluations:\n{trainer.evaluate(5, 10)}")
-
-    end = time.time()
-    print(f"\nTotal runtime: {str(round(end - start, 2))} seconds.")

@@ -1,4 +1,4 @@
-from configs.app_config import APP_BASE_PATH
+from configs.paths_config import DATA_FOLDER_PATH, MODELS_FOLDER_PATH
 from configs.names_config import AUX_CHARS_DICT, MAX_FORENAME_LEN
 from utils.files_helper import read_unique_names
 from utils.embeddings import encode_seqs
@@ -8,7 +8,7 @@ import json
 from keras import models, backend
 
 
-class ForenameCreator:
+class ForenamesCreator:
     """
     Create specific gender's new forenames via pre-trained Keras model.
 
@@ -18,7 +18,7 @@ class ForenameCreator:
     model_path (str): path to forename's model file of specific gender.
 
     Methods:
-    create(names_num: int, top_k_elements: int = None): create a number of new forenames.
+    create(num_names: int, top_k_elements: int = None): create a number of new forenames.
     """
 
     def __init__(self, gender: str):  # Gender options: male, female.
@@ -28,22 +28,26 @@ class ForenameCreator:
         """
         self.gender = gender
         self.names_series = read_unique_names(f'{self.gender}_forenames')
-        self.encoding_info_path = os.path.join(APP_BASE_PATH, 'data', 'encoding_info.json')
+        self.encoding_info_path = os.path.join(
+            DATA_FOLDER_PATH, 'encoding_info.json'
+        )
 
-        model_path = os.path.join(APP_BASE_PATH, 'models', f'{self.gender}_forenames.h5')
+        model_path = os.path.join(
+            MODELS_FOLDER_PATH, f'{self.gender}_forenames.h5'
+        )
         self.model = models.load_model(model_path)
         backend.clear_session()
 
-    def create(self, names_num: int, top_k_elements: int = None):
+    def create(self, num_names: int, top_k_elements: int = None):
         """
         Create a number of new forenames for production.
 
         Args:
-            names_num (int): number of new names to create.
+            num_names (int): number of new names to create.
             top_k_elements (int, optional): number of top characters for selection during creation.
 
         Returns:
-            str: string of all created names, separated by commas.
+            list: list of all created names.
         """
         # Chars to be added at start and end.
         start_char, end_char = AUX_CHARS_DICT['start'], AUX_CHARS_DICT['end']
@@ -54,7 +58,7 @@ class ForenameCreator:
 
         creations, existing_names = [], self.names_series.tolist()
 
-        while len(creations) < names_num:
+        while len(creations) < num_names:
             creation_iter = start_char  # Each creation starts from start_char.
             while True:
                 seqs_matrix = encode_seqs(creation_iter, timesteps)  # Encode creation into 3-D sequences matrix.
@@ -80,5 +84,5 @@ class ForenameCreator:
 
 
 if __name__ == '__main__':
-    creator = ForenameCreator('female')
+    creator = ForenamesCreator('female')
     print(f'Creations:\n{creator.create(5, 5)}')

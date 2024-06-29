@@ -1,4 +1,4 @@
-from configs.app_config import APP_BASE_PATH
+from configs.paths_config import DATA_FOLDER_PATH, MODELS_FOLDER_PATH
 from configs.names_config import AUX_CHARS_DICT, MAX_SURNAME_LEN
 from utils.files_helper import read_unique_names
 from utils.embeddings import encode_seqs
@@ -8,7 +8,7 @@ import json
 from keras import models, backend
 
 
-class SurnameCreator:
+class SurnamesCreator:
     """
     Create new surnames via pre-trained Keras model.
 
@@ -17,7 +17,7 @@ class SurnameCreator:
     model_path (str): path to surname's model file of.
 
     Methods:
-    create(names_num: int, top_k_elements: int = None): create a number of new surnames.
+    create(num_names: int, top_k_elements: int = None): create a number of new surnames.
     """
 
     def __init__(self):
@@ -25,22 +25,26 @@ class SurnameCreator:
         Initialize with series of unique surnames, paths to encoding information and model files.
         """
         self.names_series = read_unique_names('surnames')
-        self.encoding_info_path = os.path.join(APP_BASE_PATH, 'data', 'encoding_info.json')
+        self.encoding_info_path = os.path.join(
+            DATA_FOLDER_PATH, 'encoding_info.json'
+        )
 
-        model_path = os.path.join(APP_BASE_PATH, 'models', 'surnames.h5')
+        model_path = os.path.join(
+            MODELS_FOLDER_PATH, 'surnames.h5'
+        )
         self.model = models.load_model(model_path)
         backend.clear_session()
 
-    def create(self, names_num: int, top_k_elements: int = None):
+    def create(self, num_names: int, top_k_elements: int = None):
         """
         Create a number of new surnames for production.
 
         Args:
-            names_num (int): number of new names to create.
+            num_names (int): number of new names to create.
             top_k_elements (int, optional): number of top characters for selection during creation.
 
         Returns:
-            str: string of all created names, separated by commas.
+            list: list of all created names.
         """
         # Chars to be added at start and end.
         start_char, end_char = AUX_CHARS_DICT['start'], AUX_CHARS_DICT['end']
@@ -51,7 +55,7 @@ class SurnameCreator:
 
         creations, existing_names = [], self.names_series.tolist()
 
-        while len(creations) < names_num:
+        while len(creations) < num_names:
             creation_iter = start_char  # Each creation starts from start_char.
             while True:
                 seqs_matrix = encode_seqs(creation_iter, timesteps)  # Encode creation into 3-D sequences matrix.
@@ -77,5 +81,5 @@ class SurnameCreator:
 
 
 if __name__ == '__main__':
-    creator = SurnameCreator()
+    creator = SurnamesCreator()
     print(f'Creations:\n{creator.create(5, 10)}')

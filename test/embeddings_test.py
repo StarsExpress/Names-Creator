@@ -34,11 +34,6 @@ def test_embeddings(names_type: str):
 
 
 if __name__ == '__main__':
-    import time
-
-    start = time.time()
     test_embeddings('surnames')
     test_embeddings('male_forenames')
     test_embeddings('female_forenames')
-    end = time.time()
-    print(f'\nTotal runtime: {str(round(end - start, 2))} seconds.')

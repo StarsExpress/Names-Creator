@@ -3,12 +3,12 @@ from configs.models_config import PAD_VALUE
 import numpy as np
 
 
-characters_list = LOWER_CASE_LIST + UPPER_CASE_LIST + list(AUX_CHARS_DICT.values())  # List of all chars.
-chars2int_dict = dict(zip(characters_list, set(range(len(characters_list)))))  # Dictionary to map chars to int.
-int2chars_dict = {v: k for k, v in chars2int_dict.items()}  # Dictionary to map int to chars.
+characters_list = LOWER_CASE_LIST + UPPER_CASE_LIST + list(AUX_CHARS_DICT.values())
+chars2int_dict = dict(zip(characters_list, set(range(len(characters_list)))))
+int2chars_dict = {v: k for k, v in chars2int_dict.items()}
 
-start_char = AUX_CHARS_DICT['start']  # Char to be added at leftmost edge to represent name's start.
-end_char = AUX_CHARS_DICT['end']  # Char to be added at rightmost edge to represent name's end.
+start_char = AUX_CHARS_DICT['start']  # Added at leftmost edge to represent name's start.
+end_char = AUX_CHARS_DICT['end']  # Added at rightmost edge to represent name's end.
 
 
 def concat_arrays(arrays_list: list[np.ndarray]):
