@@ -13,11 +13,11 @@ class SurnamesCreator:
     Create new surnames via pre-trained Keras model.
 
     Attributes:
-    encoding_info_path (str): path to encoding information file.
-    model_path (str): path to surname's model file of.
+        encoding_info_path (str): path to encoding information file.
+        model (keras.Model): surnames' model.
 
     Methods:
-    create(num_names: int, top_k_elements: int = None): create a number of new surnames.
+        create(num_names: int, top_k_elements: int = None): create a number of new surnames.
     """
 
     def __init__(self):

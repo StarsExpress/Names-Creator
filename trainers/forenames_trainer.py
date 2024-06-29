@@ -16,15 +16,15 @@ class ForenamesTrainer:
     Train and evaluate Keras model on specific gender's forenames.
 
     Attributes:
-    gender (str): gender for which model is being trained. Options: 'male', 'female'.
-    names_series (pd.Series): series of unique forenames.
-    encoding_info_path (str): path to encoding information file.
-    model_path (str): path to forename's model file of specific gender.
-    metrics_list (list): list of metrics used during training epoch.
+        gender (str): gender for which model is being trained. Options: 'male', 'female'.
+        names_series (pd.Series): series of unique forenames.
+        encoding_info_path (str): path to encoding information file.
+        model_path (str): path to forename's model file of specific gender.
+        metrics_list (list): list of metrics used during training epoch.
 
     Methods:
-    train(): train model on forenames.
-    evaluate(num_names: int, top_k_elements: int = None): generate a number of new names.
+        train(): train model on forenames.
+        evaluate(num_names: int, top_k_elements: int = None): generate a number of new names.
     """
 
     def __init__(self, gender: str):

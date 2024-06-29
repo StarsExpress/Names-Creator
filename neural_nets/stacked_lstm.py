@@ -6,7 +6,9 @@ from keras.layers import Masking, LSTM, Dense
 def make_stacked_lstm(input_shape: tuple[int, ...], lstm_metrics: list[metrics]):
     """
     Create a stacked LSTM model with 2 masking layers and 2 LSTM layers.
+
     Output layer has the same number of neurons as number of features.
+
     Model is compiled with a specified loss function, optimizer, and metrics.
 
     Args:

@@ -16,6 +16,7 @@ def make_creations(
 ):
     """
     Create a specified number of names based on provided parameters.
+
     Also measure total and average time taken to create names.
 
     Args:
@@ -26,7 +27,7 @@ def make_creations(
         Can be 'remix', 'just_surname', 'just_forename', or 'full_name'. Defaults to 'remix'.
 
     Returns:
-        tuple: contain list of created names, total time and average time to create names.
+        tuple: list of created names, total time and average time to create names.
     """
 
     start = time.time()

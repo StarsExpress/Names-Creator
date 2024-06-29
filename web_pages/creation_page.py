@@ -10,11 +10,15 @@ import streamlit as st
 def enter_creation_page():
     """
     Set up creation page of web application.
+
     It creates a form with several input fields for user to specify parameters for name creation.
+
     Parameters include: number of names, creativity level, gender, and target.
 
     After user submits form, this function calls `make_creations` function to generate names.
+
     Created names are then displayed in a chat message on creation page.
+
     This function also calculates and displays total and average time taken to create names.
     """
     st.markdown(NO_BORDERS_CSS, unsafe_allow_html=True)

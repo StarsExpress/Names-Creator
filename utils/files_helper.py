@@ -6,6 +6,7 @@ import pandas as pd
 def read_unique_names(name_type: str):
     """
     Read unique names from a specified file.
+
     If names aren't unique, it removes duplicates and saves unique names back to the read file.
 
     Args:

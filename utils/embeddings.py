@@ -91,6 +91,7 @@ def decode_matrix(matrix: np.ndarray):
 def encode_name(name: str, timesteps: int, to_seqs: bool = True):
     """
     Encode a name into sequences or characters.
+
     For example: encoded sequences of 'Hi' are: ~, ~H, ~Hi; encoded chars are: H, i, #.
 
     Args:

@@ -3,9 +3,9 @@ import os
 import base64
 
 
-def prepare_image_body():
+def process_image_body():
     """
-    Read and encode image to base64. Prepare it to be used as a background image in a style tag.
+    Read and encode image to base64. Process it to be used as a background image in a style tag.
 
     Returns:
         str: string containing style tag with background image.

@@ -16,14 +16,14 @@ class SurnamesTrainer:
     Train and evaluate Keras model on surnames.
 
     Attributes:
-    names_series (pd.Series): series of unique surnames.
-    encoding_info_path (str): path to encoding information file.
-    model_path (str): path to surname's model file.
-    metrics_list (list): list of metrics used during training epoch.
+        names_series (pd.Series): series of unique surnames.
+        encoding_info_path (str): path to encoding information file.
+        model_path (str): path to surname's model file.
+        metrics_list (list): list of metrics used during training epoch.
 
     Methods:
-    train(): train model on surnames.
-    evaluate(num_names: int, top_k_elements: int = None): generate a number of new names.
+        train(): train model on surnames.
+        evaluate(num_names: int, top_k_elements: int = None): generate a number of new names.
     """
 
     def __init__(self):

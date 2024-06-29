@@ -13,15 +13,15 @@ class ForenamesCreator:
     Create specific gender's new forenames via pre-trained Keras model.
 
     Attributes:
-    gender (str): gender for which model is being used. Options: 'male', 'female'.
-    encoding_info_path (str): path to encoding information file.
-    model_path (str): path to forename's model file of specific gender.
+        gender (str): gender for which model is being used. Options: 'male', 'female'.
+        encoding_info_path (str): path to encoding information file.
+        model (keras.Model): path to forename's model file of specific gender.
 
     Methods:
-    create(num_names: int, top_k_elements: int = None): create a number of new forenames.
+        create(num_names: int, top_k_elements: int = None): create a number of new forenames.
     """
 
-    def __init__(self, gender: str):  # Gender options: male, female.
+    def __init__(self, gender: str):
         """
         Initialize with series of unique forenames of given gender,
         paths to encoding information and model files.

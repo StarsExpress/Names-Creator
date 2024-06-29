@@ -10,6 +10,7 @@ surnames_list = read_unique_names('surnames').tolist()
 def select_character(probs_array: np.ndarray, top_k_elements: int = None):
     """
     Select a character based on provided probabilities.
+
     If top_k_elements is provided, only top k chars of highest probs are considered.
 
     Args:
@@ -45,6 +46,7 @@ def select_surnames(size: int):
 def adjust_creation(creation: str):
     """
     Adjust the created name by replacing start_char with an empty space and capitalizing name.
+
     If created name starts with 'Mc', 3rd letter is also capitalized.
 
     Args:

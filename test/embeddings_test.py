@@ -5,8 +5,11 @@ from utils.files_helper import read_unique_names
 def test_embeddings(names_type: str):
     """
     Test functionality of embeddings.py in these steps:
+
     1. Read unique names of a specified type and encode them into sequences.
+
     2. Decode encoded sequences and check if decoded names match original names.
+
     3. Also check shapes of encoded sequences and characters.
 
     Args:
