@@ -1,6 +1,6 @@
-from configs.paths_config import DATA_FOLDER_PATH
 import os
 import pandas as pd
+from configs.paths_config import DATA_FOLDER_PATH
 
 
 def read_unique_names(name_type: str):

@@ -1,6 +1,6 @@
-from configs.models_config import PAD_VALUE, LSTM_NEURONS, ACTIVATIONS, DROPOUT_RATE, LOSS_FUNCTION, LEARNING_RATE
 from keras import metrics, Sequential, optimizers
 from keras.layers import Masking, LSTM, Dense
+from configs.models_config import PAD_VALUE, LSTM_NEURONS, ACTIVATIONS, DROPOUT_RATE, LOSS_FUNCTION, LEARNING_RATE
 
 
 def make_stacked_lstm(input_shape: tuple[int, ...], lstm_metrics: list[metrics]):

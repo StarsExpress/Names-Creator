@@ -1,3 +1,7 @@
+import os
+import json
+from keras import metrics, models, backend
+from keras.callbacks import EarlyStopping
 from configs.paths_config import DATA_FOLDER_PATH, MODELS_FOLDER_PATH
 from configs.models_config import EPOCHS, DENOMINATOR
 from configs.names_config import AUX_CHARS_DICT, MAX_SURNAME_LEN
@@ -5,10 +9,6 @@ from neural_nets.stacked_lstm import make_stacked_lstm
 from utils.files_helper import read_unique_names
 from utils.embeddings import concat_arrays, encode_seqs, encode_name
 from utils.candidates import select_character, adjust_creation
-import os
-import json
-from keras import metrics, models, backend
-from keras.callbacks import EarlyStopping
 
 
 class SurnamesTrainer:

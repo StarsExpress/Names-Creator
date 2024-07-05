@@ -1,6 +1,6 @@
-from configs.paths_config import DATA_FOLDER_PATH
 import os
 import base64
+from configs.paths_config import DATA_FOLDER_PATH
 
 
 def process_image_body():

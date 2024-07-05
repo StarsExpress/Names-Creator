@@ -1,10 +1,10 @@
+import streamlit as st
+from streamlit_option_menu import option_menu
 from configs.app_config import WEB_NAME, ICON, LAYOUT, LIGHT_THEME_CSS
 from configs.pages_config import PAGES_DICT, MENU_ICON
 from utils.preprocessing import process_image_body
 from web_pages.creation_page import enter_creation_page
 from web_pages.intro_page import enter_intro_page
-import streamlit as st
-from streamlit_option_menu import option_menu
 
 
 class App:

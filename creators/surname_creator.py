@@ -1,11 +1,11 @@
+import os
+import json
+from keras import models, backend
 from configs.paths_config import DATA_FOLDER_PATH, MODELS_FOLDER_PATH
 from configs.names_config import AUX_CHARS_DICT, MAX_SURNAME_LEN
 from utils.files_helper import read_unique_names
 from utils.embeddings import encode_seqs
 from utils.candidates import select_character, adjust_creation
-import os
-import json
-from keras import models, backend
 
 
 class SurnamesCreator:
@@ -78,8 +78,3 @@ class SurnamesCreator:
                     creations.append(creation_iter)
 
         return creations
-
-
-if __name__ == '__main__':
-    creator = SurnamesCreator()
-    print(f'Creations:\n{creator.create(5, 10)}')

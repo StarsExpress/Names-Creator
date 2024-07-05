@@ -1,6 +1,6 @@
+import numpy as np
 from configs.names_config import LOWER_CASE_LIST, UPPER_CASE_LIST, AUX_CHARS_DICT, SEQUENCE_WINDOW
 from configs.models_config import PAD_VALUE
-import numpy as np
 
 
 characters_list = LOWER_CASE_LIST + UPPER_CASE_LIST + list(AUX_CHARS_DICT.values())

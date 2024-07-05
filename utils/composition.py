@@ -1,7 +1,7 @@
+import time
 from utils.candidates import select_surnames
 from creators.surname_creator import SurnamesCreator
 from creators.forenames_creator import ForenamesCreator
-import time
 
 
 surname_creator = SurnamesCreator()
@@ -27,7 +27,7 @@ def make_creations(
         Can be 'remix', 'just_surname', 'just_forename', or 'full_name'. Defaults to 'remix'.
 
     Returns:
-        tuple: list of created names, total time and average time to create names.
+        tuple: tuple carrying list of created names, total time and average time to create names.
     """
 
     start = time.time()

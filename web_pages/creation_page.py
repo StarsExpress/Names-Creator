@@ -1,10 +1,10 @@
+import streamlit as st
 from configs.app_config import NO_BORDERS_CSS
 from configs.pages_config import CONTAINER_TITLE, CONTAINER_HEADER, COLUMNS_WIDTH_LIST
 from configs.pages_config import CREATION_SLIDER, MIN_NUM, MAX_NUM, CREATIVITY_SLIDER, CREATIVITY_DICT
 from configs.pages_config import GENDER, TARGET, GENDER_DICT, TARGET_DICT, TARGET_EXPANDER, TARGET_DETAILS
 from configs.pages_config import BUTTON, SPINNER, CHAT_NAME, CHAT_AVATAR, METRIC, METRIC_DICT
 from utils.composition import make_creations
-import streamlit as st
 
 
 def enter_creation_page():

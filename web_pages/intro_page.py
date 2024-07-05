@@ -1,5 +1,5 @@
-from configs.pages_config import INTRO_WIDTH_LIST, INTRO_TITLE, WEB_INTRO, SELF_INTRO, MEDIA, MEDIA_DICT
 import streamlit as st
+from configs.pages_config import INTRO_WIDTH_LIST, INTRO_TITLE, WEB_INTRO, SELF_INTRO, MEDIA, MEDIA_DICT
 
 
 def enter_intro_page():

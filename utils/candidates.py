@@ -1,33 +1,33 @@
-from configs.names_config import LOWER_CASE_LIST, UPPER_CASE_LIST, AUX_CHARS_DICT
 from utils.files_helper import read_unique_names
 import numpy as np
+from configs.names_config import LOWER_CASE_LIST, UPPER_CASE_LIST, AUX_CHARS_DICT
 
 
 characters_list = LOWER_CASE_LIST + UPPER_CASE_LIST + list(AUX_CHARS_DICT.values())
 surnames_list = read_unique_names('surnames').tolist()
 
 
-def select_character(probs_array: np.ndarray, top_k_elements: int = None):
+def select_character(probs_array: np.ndarray, top_k: int = None):
     """
     Select a character based on provided probabilities.
 
-    If top_k_elements is provided, only top k chars of highest probs are considered.
+    If top_k is provided, only top k chars of highest probs are considered.
 
     Args:
         probs_array (np.ndarray): array of probs for each character.
-        top_k_elements (int, optional): top k chars to be considered. Defaults to None.
+        top_k (int, optional): top k chars to be considered. Defaults to None.
 
     Returns:
         str: selected char.
     """
-    if top_k_elements is None:  # None means no top-k method.
-        return np.random.choice(characters_list, size=1, p=probs_array)[0]  # [0] gets item from returned list.
+    if top_k is None:  # No top-k method.
+        return np.random.choice(characters_list, size=1, p=probs_array)[0]  # [0] gets item from list.
 
-    top_k_indices = probs_array.argsort()[-top_k_elements:]
+    top_k_indices = probs_array.argsort()[-top_k:]
     top_k_probs = probs_array[top_k_indices]
-    top_k_probs *= 1 / top_k_probs.sum()  # Normalize sum of selected probabilities to 1.
-    top_k_characters = np.array(characters_list)[top_k_indices]
-    return np.random.choice(top_k_characters, size=1, p=top_k_probs)[0]
+    top_k_probs *= 1 / top_k_probs.sum()  # Normalize sum of selected probs to 1.
+    top_k_chars = np.array(characters_list)[top_k_indices]
+    return np.random.choice(top_k_chars, size=1, p=top_k_probs)[0]  # [0] gets item from list.
 
 
 def select_surnames(size: int):
